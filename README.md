@@ -11,3 +11,7 @@ We also have a function play_game(word_list) which takes a word_list which we ne
 To run use python:
 
     python milestone_5.py
+
+Alternatively, for something not asked for in this project, you can run the folder:
+
+    python Hangman
