@@ -4,8 +4,12 @@ Hangman is a classic game in which a player thinks of a word and the other playe
 
 This is an implementation of the Hangman game, where the computer thinks of a word and the user tries to guess it.
 
-The project currently generates a random word from a word list with the generate_random_word() function. It then asks for user input using the ask_for_input() function inviting the user to enter a letter. If this is alphanumeric and only one character it then checks this using the check_guess(guess) function which checks to see if this letter is contained in the randomly generated word..
+In the program, we have a class Hangman with two methods, check_guess(guess) and ask_for_input(), and an **init** that takes two arguments, a word list and a number for number of lives (the second of these is optional).
+
+We instantiate the class Hangman by passing it a word list. This will choose a random word from the word_list and assign it as an attribute of the object. It also creates an attribute with a representation of the guessed letters, the number of unique letters in the word, a list of the guesses already made and the lives left.
+
+In the code, once you have instantiated the object we need to call the method ask_for_input() on the object to run the game engine as it stands.
 
 To run use python:
 
-    python milestone_3.py
+    python milestone_4.py
