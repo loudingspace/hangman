@@ -2,7 +2,25 @@ import random
 
 
 class Hangman:
+    '''
+    This class represents a game of Hangman
+
+    Attributes:
+        word (string): a word picked at random from word_list
+        word_guessed (list): a representation of the word with undescores for letters not guessed
+        num_letters (int): the number of unique letters in word
+        word_list (list): the supplied list of words from which word is picked at random
+        list_of_guesses(list): a list of letters of all the guesses which the user has made
+    '''
+
     def __init__(self, word_list, num_lives=5):
+        '''
+        Initialise the class with a supplied word list and an optional num_lives
+
+        Args:
+            word_list (list): a list of words to be guessed
+            num_lives (int): an optional number of lives, defaults to 5
+        '''
         self.word = random.choice(word_list)
         self.word_guessed = ['_' for letter in self.word]
         self.num_letters = len(set(list(self.word)))
@@ -11,6 +29,15 @@ class Hangman:
         self.list_of_guesses = []
 
     def check_guess(self, guess):
+        '''
+        Checks the guessed letter again the current randomly selected word
+
+        Args:
+            guess (string): a letter to be evaluated against the value of the current word
+
+        Return:
+            bool: true if the guess is correct, false otherwise (may want to amend this in future)     
+        '''
 
         guess = guess.lower()
 
@@ -33,6 +60,14 @@ class Hangman:
             return False
 
     def ask_for_input(self):
+        '''
+        Asks the user for input.
+
+        This consists of a While loop that will keep asking the user for input. It calls the check_guess method on the current instantiation of the class.
+
+        Returns:
+            at present nothing 
+        '''
         while True:
             guess = input('Please guess a single letter: ')
 
@@ -45,69 +80,9 @@ class Hangman:
 
             self.list_of_guesses.append(guess)
 
-            # if len(guess) == 1 and guess.isalpha():  # the check is to see if it is valid,
-            #     break
-            # else:
-            #     print('Invalid letter. Please, enter a single alphabetical character.')
 
-        check_guess(guess)
-
-
+# Begin of main program:
 word_list = ['grapes', 'orange', 'plum', 'kiwi', 'banana']
 
-
-# def generate_random_word(word_list):
-# '''
-# args: a list of words
-
-# return: a word from that list
-# '''
-# return random.choice(word_list)
-
-
-# def check_guess(guess):
-#     '''
-#     Checks the guess inputted by user
-
-#     arg guess:    a letter
-#     return: boolean whether letter in word
-#     '''
-
-#     guess = guess.lower()
-
-#     if guess in self.word:
-#         print(f"Good guess! {guess} is in the word.")
-#         return True
-#     else:
-#         print(f"Sorry, {guess} is not in the word. Try again.")
-#         return False
-
-
-# def ask_for_input():
-#     while True:
-#         guess = input('Please guess a single letter: ')
-#         if len(guess) == 1 and guess.isalpha():  # the check is to see if it is valid,
-#             break
-#         else:
-#             print('Invalid letter. Please, enter a single alphabetical character.')
-
-#     check_guess(guess)
-
-
-# word = generate_random_word(word_list)
-# word_guessed_list = ['_' for letter in word]
-# num_letters = len(set(list(word)))
-
-
 hangman = Hangman(word_list)
-
 hangman.ask_for_input()
-
-# print(hangman.list_of_guesses, hangman.word, hangman.word_guessed_list,
-#       hangman.num_letters, hangman.num_lives)
-
-# print(word, word_guessed_list, num_letters)
-# ask_for_input()
-
-
-# https://stackoverflow.com/questions/18834636/random-word-generator-python
