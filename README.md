@@ -6,10 +6,8 @@ This is an implementation of the Hangman game, where the computer thinks of a wo
 
 In the program, we have a class Hangman with two methods, check_guess(guess) and ask_for_input(), and an **init** that takes two arguments, a word list and a number for number of lives (the second of these is optional).
 
-We instantiate the class Hangman by passing it a word list. This will choose a random word from the word_list and assign it as an attribute of the object. It also creates an attribute with a representation of the guessed letters, the number of unique letters in the word, a list of the guesses already made and the lives left.
-
-In the code, once you have instantiated the object we need to call the method ask_for_input() on the object to run the game engine as it stands.
+We also have a function play_game(word_list) which takes a word_list which we need to supply as an argument. In this function we instantiate the class Hangman by passing it the word list. This will choose a random word from the word_list and assign it as an attribute of the object. It also creates an attribute with a representation of the guessed letters, the number of unique letters in the word, a list of the guesses already made and the lives left. These are updated as we ask the user for another letter with ask_for_input.
 
 To run use python:
 
-    python milestone_4.py
+    python milestone_5.py
