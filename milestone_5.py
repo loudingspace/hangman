@@ -34,9 +34,6 @@ class Hangman:
 
         Args:
             guess (string): a letter to be evaluated against the value of the current word
-
-        Return:
-            bool: true if the guess is correct, false otherwise (may want to amend this in future)     
         '''
 
         guess = guess.lower()
@@ -49,24 +46,15 @@ class Hangman:
                     self.word_guessed[index] = letter
 
             self.num_letters -= 1
-            print(
-                f'Word: {self.word_guessed}, number of letters {self.num_letters}')
-
-            return True
         else:
             self.num_lives -= 1
             print(f"Sorry, {guess} is not in the word. Try again.")
-            print(f"\tLives left: {self.num_lives}")
-            return False
 
     def ask_for_input(self):
         '''
         Asks the user for input.
 
         This consists of a While loop that will keep asking the user for input. It calls the check_guess method on the current instantiation of the class.
-
-        Returns:
-            at present nothing 
         '''
         # while True: <-- the loop is now from the play_game method
         guess = input('Please guess a single letter: ')
@@ -90,7 +78,6 @@ def play_game(word_list):
 
     A while loop runs asking the player for guesses of the word. If the player guesses the word or if they run out of lives, the game ends.
     '''
-
     num_lives = 5
     game = Hangman(word_list, num_lives)
 
@@ -99,19 +86,21 @@ def play_game(word_list):
             print('You lost!')
             break
         elif game.num_letters > 0:
-            print('Another round')
+            print(
+                f'\nWord to guess: {" ".join(game.word_guessed)}\tLives left: {game.num_lives}')
             game.ask_for_input()
         else:
             print('Congratulations. You won the game!')
             break
 
-    print('\nThank you for playing')
+    play_again = input(
+        '\nThank you for playing. Would you like to play again? ')
+    if play_again[0].lower() == 'y':
+        play_game(word_list)
+    else:
+        print('\nHave a great day!')
 
 
 # Begin of main program:
 word_list = ['grapes', 'orange', 'plum', 'kiwi', 'banana']
 play_game(word_list)
-
-
-# hangman = Hangman(word_list)
-# hangman.ask_for_input()
