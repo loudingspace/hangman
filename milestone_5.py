@@ -28,12 +28,14 @@ class Hangman:
         self.word_list = word_list
         self.list_of_guesses = []
 
-    def check_guess(self, guess):
+    def __check_guess(self, guess):
         '''
         Checks the guessed letter again the current randomly selected word
 
         Args:
             guess (string): a letter to be evaluated against the value of the current word
+
+        This method is private as it should be considered something only this class needs to concern itself with.    
         '''
 
         guess = guess.lower()
@@ -50,11 +52,13 @@ class Hangman:
             self.num_lives -= 1
             print(f"Sorry, {guess} is not in the word. Try again.")
 
-    def ask_for_input(self):
+    def _ask_for_input(self):
         '''
         Asks the user for input.
 
-        This consists of a While loop that will keep asking the user for input. It calls the check_guess method on the current instantiation of the class.
+        This consists of a While loop that will keep asking the user for input. It calls the __check_guess method on the current instantiation of the class.
+
+        This method is protected as no external code should really need access to this.
         '''
         # while True: <-- the loop is now from the play_game method
         guess = input('Please guess a single letter: ')
@@ -64,7 +68,7 @@ class Hangman:
         elif guess in self.list_of_guesses:
             print('You already tried that letter!')
         else:
-            self.check_guess(guess)
+            self.__check_guess(guess)
 
         self.list_of_guesses.append(guess)
 
@@ -77,6 +81,8 @@ def play_game(word_list):
         word_list (list): a list of words
 
     A while loop runs asking the player for guesses of the word. If the player guesses the word or if they run out of lives, the game ends.
+
+    This is public as this follows abstraction - this is the only visible method needed to play the game.
     '''
     num_lives = 5
     game = Hangman(word_list, num_lives)
@@ -88,7 +94,7 @@ def play_game(word_list):
         elif game.num_letters > 0:
             print(
                 f'\nWord to guess: {" ".join(game.word_guessed)}\tLives left: {game.num_lives}')
-            game.ask_for_input()
+            game._ask_for_input()
         else:
             print('Congratulations. You won the game!')
             break
